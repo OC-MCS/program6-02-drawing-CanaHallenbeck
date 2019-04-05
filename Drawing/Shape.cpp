@@ -2,6 +2,14 @@
 #include <iostream>
 using namespace std;
 
+//-----------------------------------------------------
+//	Shape -- 
+//
+//	* ShapeData = struct for writing to a binary file
+//  * DrawingShape = abstract base class for circles
+//    and squares;
+//----------------------------------------------------
+
 Circle::Circle(Vector2f mPos, Color chosenColor) : DrawingShape(mPos, chosenColor, CIRCLE) 
 {
 	drawnCircle.setPosition(mPos);
@@ -24,7 +32,7 @@ void Circle::draw(RenderWindow & win) const
 
 ShapeData Circle::getFileRecord() const
 {
-	return SD;
+	return SD; // returns a struct with the circle's data
 }
 
 Square::Square(Vector2f mPos, Color chosenColor) : DrawingShape(mPos, chosenColor, SQUARE)
@@ -48,5 +56,17 @@ void Square::draw(RenderWindow & win) const
 
 ShapeData Square::getFileRecord() const
 {
-	return SD;
+	return SD; // returns a struct with the square's data
+}
+
+DrawingShape::DrawingShape(Vector2f l, Color c, ShapeEnum type)
+{
+	shapeLoc = l;
+	shapeColor = c;
+	shape = type;
+
+	SD.shapeColor = c.toInteger();
+	SD.shapeLocationY = l.y;
+	SD.shapeLocationX = l.x;
+	SD.shapeType = type;
 }

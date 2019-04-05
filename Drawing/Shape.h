@@ -6,8 +6,14 @@ using namespace std;
 using namespace sf;
 
 
-// DrawingShape should be an abstract base class 
-// for Circle and Square
+//-----------------------------------------------------
+//	Shape -- 
+//
+//	* ShapeData = struct for writing to a binary file
+//  * DrawingShape = abstract base class for circles
+//    and squares;
+//----------------------------------------------------
+
 
 struct ShapeData
 {
@@ -25,17 +31,7 @@ private:
 	ShapeEnum shape;
 	ShapeData SD; // <------------------------- "Shape Data"; struct holding the information to write to / read from binary file
 public:
-	DrawingShape(Vector2f l, Color c, ShapeEnum type)
-	{
-		shapeLoc = l;
-		shapeColor = c;
-		shape = type;
-
-		SD.shapeColor = c.toInteger();
-		SD.shapeLocationY = l.y;
-		SD.shapeLocationX = l.x;
-		SD.shapeType = type;
-	}
+	DrawingShape(Vector2f l, Color c, ShapeEnum type);
 	virtual void draw(RenderWindow & win) const = 0;
 	virtual ShapeData getFileRecord() const = 0;
 
@@ -59,7 +55,8 @@ private:
 	ShapeData SD;
 public:
 	Circle(Vector2f mPos, Color chosenColor);
-    void draw(RenderWindow & win) const;
+    
+	void draw(RenderWindow & win) const;
 	ShapeData getFileRecord() const;
 };
 
@@ -70,6 +67,7 @@ private:
 	ShapeData SD;
 public:
 	Square(Vector2f mPos, Color chosenColor);
+	
 	void draw(RenderWindow & win) const;
 	ShapeData getFileRecord() const;
 };

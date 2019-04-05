@@ -1,7 +1,13 @@
 #include "SettingsUI.h"
 using namespace std;
 
+//-----------------------------------------------------
+//	Settings UI -- user interface for settings (button
+//	clicks, draws button options)
+//----------------------------------------------------
+
 void Die(string msg);
+
 SettingsUI::SettingsUI(SettingsMgr * mgr)
 {
 	// ?
@@ -10,7 +16,7 @@ void SettingsUI::handleMouseUp(Vector2f mouse, SettingsMgr * mgr)
 {
 	if (blueBtn.getGlobalBounds().contains(mouse))
 	{
-		cout << "BLUE" << endl; // button register test
+		cout << "BLUE" << endl; // <---------------------- button register test
 		mgr->setCurColor(Color::Blue);
 	}
 	else if (redBtn.getGlobalBounds().contains(mouse))
